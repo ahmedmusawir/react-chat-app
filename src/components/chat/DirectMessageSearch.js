@@ -25,7 +25,7 @@ function DirectMessageSearch() {
         .toLowerCase();
 
       // console.log(test);
-      if (postContent.indexOf(inputText) != -1) {
+      if (postContent.indexOf(inputText) !== -1) {
         $(elm).removeClass('d-none');
 
         // const elmCount = $(elm).hasClass('d-none');

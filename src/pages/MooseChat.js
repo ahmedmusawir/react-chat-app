@@ -101,11 +101,16 @@ const MooseChat = (props) => {
         <ChatCard key={`${index}`} chat={chat} />
       )}
       renderNewChatForm={(creds) => renderChatForm(creds)} // This is for DM from the Chat page
-      renderPeopleSettings={(creds, chat) => <PeopleSettings />}
       // userName="odesk.shourav@gmail.com"
       // userSecret="odesk.shourav@gmail.com"
       // renderNewChatForm={(creds) => createDirectChat(creds)} // This is for starting DM on page load
-      renderChatSettings={(chatAppState) => <ChatUserSearch />}
+      renderChatSettings={(chatAppState) => (
+        <ChatUserSearch
+          user={currentUser}
+          secret={currentUserEmail}
+          creds={chatAppState}
+        />
+      )}
     />
   );
 };
