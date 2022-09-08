@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
 import axios from 'axios';
 
-function ChatUserSearch({ user, secret, creds }) {
+function ChatUserSearch({ userLoggedIn, secret, creds }) {
   const [users, setUsers] = useState(null);
   const [username, setUsername] = useState('');
   const [isPending, setIsPending] = useState(true);
+  const [query, setQuery] = useState('');
+
+  console.log(query);
 
   const fetchPosts = async () => {
     try {
@@ -32,9 +35,9 @@ function ChatUserSearch({ user, secret, creds }) {
 
   useEffect(() => {
     fetchPosts();
-  }, [user]);
+  }, [userLoggedIn]);
 
-  const makeDm = (usr) => {
+  const makeDirectMessaging = (usr) => {
     console.log('User clicked', usr);
     getOrCreateChat(creds, { is_direct_chat: true, usernames: [usr] }, () =>
       setUsername('')
@@ -47,18 +50,36 @@ function ChatUserSearch({ user, secret, creds }) {
         Pick users from below to start DM:...
       </h6>
 
+      {/* CHAT USER SEARCH INPUT */}
+      <input
+        type="text"
+        name="react-search"
+        id="react-search"
+        placeholder="What are you looking for?"
+        className="form-control m-1"
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
       {users &&
-        users.map((user) => {
-          return (
-            <div key={user.id}>
-              <button onClick={() => makeDm(user.username)}>
+        users
+          .filter((user) =>
+            user.username.toLowerCase().includes(query.toLowerCase())
+          )
+          .map((user) => {
+            if (user.username === userLoggedIn) {
+              // SKIPPING THE USER WHO'S LOGGED IN
+              return null;
+            }
+            return (
+              <button
+                key={user.id}
+                className="btn btn-outline-danger btn-block "
+                onClick={() => makeDirectMessaging(user.username)}
+              >
                 {user.username}
               </button>
-              {/* <h1>{user.username}</h1> */}
-              <br />
-            </div>
-          );
-        })}
+            );
+          })}
     </div>
   );
 }

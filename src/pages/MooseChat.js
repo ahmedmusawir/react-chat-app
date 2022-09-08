@@ -13,8 +13,10 @@ import ChatCardMoose from '../components/chat/ChatCardMoose';
 
 const MooseChat = (props) => {
   //COLLECTING CURRENT USER FROM GLOBAL
-  const currentUser = 'chat user_1';
-  const currentUserEmail = 'chat@use.com';
+  const currentUser = 'mical';
+  const currentUserEmail = 'pass1234';
+  //  const currentUser = 'chat user_1';
+  //  const currentUserEmail = 'chat@use.com';
   // const currentUser = 'ChatUser Two';
   // const currentUserEmail = 'chat2@use.com';
   // const currentUser = mooseData.currentWPUserName;
@@ -102,7 +104,7 @@ const MooseChat = (props) => {
       // renderNewChatForm={(creds) => createDirectChat(creds)} // This is for starting DM on page load
       renderChatSettings={(chatAppState) => (
         <ChatUserSearch
-          user={currentUser}
+          userLoggedIn={currentUser}
           secret={currentUserEmail}
           creds={chatAppState}
         />
