@@ -74,6 +74,9 @@ const MooseChat = (props) => {
     const user = {
       username: username,
       secret: 'pass1234',
+      // first_name: 'Adam',
+      // last_name: 'La Morre',
+      // custom_json: { high_score: 2000 },
     };
     createUser(user);
 
@@ -82,6 +85,9 @@ const MooseChat = (props) => {
       { is_direct_chat: true, usernames: [username] },
       () => setUsername('')
     );
+    // getOrCreateChat(creds, { is_direct_chat: true, usernames: ['Rico'] }, () =>
+    //   setUsername('')
+    // );
   }
 
   function renderChatForm(creds) {

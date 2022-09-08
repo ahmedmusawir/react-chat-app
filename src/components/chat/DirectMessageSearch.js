@@ -9,7 +9,7 @@ function DirectMessageSearch() {
   }, []);
 
   const searchHandler = (e) => {
-    console.log('Input Value: ', e.target.value);
+    // console.log('Input Value: ', e.target.value);
 
     // SETTING SEARCH INPUT TEXT TO LOWER CASE
     const inputText = e.target.value.toLowerCase();
@@ -19,24 +19,21 @@ function DirectMessageSearch() {
     // console.log('Card Element: ', cards);
 
     cards.each(function (i, elm) {
+      // console.log('ELM DM MOOSE', $(elm).parent().parent());
+      const mainParentDiv = $(elm).parent().parent();
+
       const postContent = $(elm)
         .find('.ce-chat-title-text div')
         .text()
         .toLowerCase();
 
-      // console.log(test);
       if (postContent.indexOf(inputText) !== -1) {
-        $(elm).removeClass('d-none');
-
-        // const elmCount = $(elm).hasClass('d-none');
-        // console.log('Elm count: ', elmCount);
+        $(mainParentDiv).removeClass('d-none');
+        // $(elm).removeClass('d-none');
       } else {
-        $(elm).removeClass('animate__zoomIn');
-        $(elm).addClass('animate__zoomOut');
-        // console.log(notFound);
-
         setTimeout(() => {
-          $(elm).addClass('d-none');
+          $(mainParentDiv).addClass('d-none');
+          // $(elm).addClass('d-none');
         }, 500);
       }
     });
