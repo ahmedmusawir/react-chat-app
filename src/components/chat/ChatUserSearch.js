@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
 import axios from 'axios';
 
-function ChatUserSearch({ userLoggedIn, secret, creds }) {
+function ChatUserSearch({ userLoggedIn, creds }) {
   const [users, setUsers] = useState(null);
   const [username, setUsername] = useState('');
   const [isPending, setIsPending] = useState(true);
   const [query, setQuery] = useState('');
 
-  console.log(query);
+  // console.log(query);
 
   const fetchPosts = async () => {
     try {
@@ -62,8 +62,10 @@ function ChatUserSearch({ userLoggedIn, secret, creds }) {
 
       {users &&
         users
-          .filter((user) =>
-            user.username.toLowerCase().includes(query.toLowerCase())
+          .filter(
+            (user) =>
+              user.first_name.toLowerCase().includes(query.toLowerCase()) ||
+              user.last_name.toLowerCase().includes(query.toLowerCase())
           )
           .map((user) => {
             if (user.username === userLoggedIn) {
@@ -77,6 +79,7 @@ function ChatUserSearch({ userLoggedIn, secret, creds }) {
                 onClick={() => makeDirectMessaging(user.username)}
               >
                 {`${user.first_name}  ${user.last_name}`}
+                {/* {user.username} */}
               </button>
             );
           })}

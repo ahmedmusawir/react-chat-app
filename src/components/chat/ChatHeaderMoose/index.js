@@ -25,7 +25,7 @@ const ChatHeader = () => {
     chat.people.find((person) => person.person.username !== conn.userName);
   const title = chat
     ? chat.is_direct_chat && otherPerson
-      ? otherPerson.person.first_name + otherPerson.person.last_name
+      ? otherPerson.person.first_name + ' ' + otherPerson.person.last_name
       : chat.title
     : undefined;
 
