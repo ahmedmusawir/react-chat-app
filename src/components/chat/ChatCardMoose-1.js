@@ -14,7 +14,6 @@ const { htmlToText } = require('html-to-text');
 
 const ChatCardMoose = (props) => {
   const { chat } = props;
-  console.log(chat);
   const { conn, activeChat, setActiveChat } = useContext(ChatEngineContext);
 
   if (_.isEmpty(chat) || props.loading) return <Loading />;
@@ -26,7 +25,7 @@ const ChatCardMoose = (props) => {
   );
   const title =
     chat.is_direct_chat && otherPerson
-      ? otherPerson.person.first_name + ' ' + otherPerson.person.last_name
+      ? otherPerson.person.username
       : chat.title;
 
   let lastMessage = htmlToText(chat.last_message.text, {});
@@ -128,16 +127,12 @@ const styles = {
     padding: '16px',
     paddingBottom: '12px',
     cursor: 'pointer',
-    border: '1px dotted #e3e3e3',
-    margin: '.3rem',
-    boxShadow: '1px 1px 2px lightgray',
   },
   titleText: {
     fontWeight: '500',
     paddingBottom: '4px',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    // color: 'white',
   },
   messageText: {
     width: '75%',
@@ -148,11 +143,9 @@ const styles = {
     display: 'inline-block',
   },
   activeChat: {
-    backgroundColor: '#36454F', //charcoal
-    // backgroundColor: '#d9d9d9',
+    backgroundColor: '#d9d9d9',
     border: '0px solid white',
     borderRadius: '12px',
-    color: 'white',
   },
 };
 

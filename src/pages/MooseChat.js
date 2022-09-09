@@ -4,16 +4,18 @@ import {
   getOrCreateChat,
   PeopleSettings,
   ChatCard,
+  // ChatHeader,
 } from 'react-chat-engine';
 import axios from 'axios';
 import ChatUserSearch from '../components/chat/ChatUserSearch';
 import DirectMessageSearch from '../components/chat/DirectMessageSearch';
 import NotFound from './NotFound';
 import ChatCardMoose from '../components/chat/ChatCardMoose';
+import ChatHeaderMoose from '../components/chat/ChatHeaderMoose';
 
 const MooseChat = (props) => {
   //COLLECTING CURRENT USER FROM GLOBAL
-  const currentUser = 'mical';
+  const currentUser = 'bibo';
   const currentUserEmail = 'pass1234';
   //  const currentUser = 'chat user_1';
   //  const currentUserEmail = 'chat@use.com';
@@ -93,12 +95,16 @@ const MooseChat = (props) => {
   return (
     <ChatEngine
       height="80vh"
-      projectID="98d9a7a2-3755-4354-a63f-a9165641e131"
+      projectID="4ca132ec-0f15-4b96-9cb4-a62d31066802"
       userName={currentUser}
       userSecret={currentUserEmail}
       renderChatCard={(chat, index) => (
-        <ChatCard key={`${index}`} chat={chat} />
-        // <ChatCardMoose key={`${index}`} chat={chat} /> // Localized and works!
+        // <ChatCard key={`${index}`} chat={chat} />
+        <ChatCardMoose key={`${index}`} chat={chat} /> // Localized and works!
+      )}
+      renderChatHeader={(chat) => (
+        // <ChatHeader />
+        <ChatHeaderMoose />
       )}
       renderNewChatForm={(creds) => renderChatForm(creds)} // This is for DM from the Chat page
       // renderNewChatForm={(creds) => createDirectChat(creds)} // This is for starting DM on page load

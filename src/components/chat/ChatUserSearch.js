@@ -16,7 +16,7 @@ function ChatUserSearch({ userLoggedIn, secret, creds }) {
       setIsPending(true);
 
       const fetchedPosts = await axios.get('https://api.chatengine.io/users/', {
-        headers: { 'Private-Key': '37d9cc64-75a2-41e0-94d9-61a0c9c29750' },
+        headers: { 'Private-Key': '185fb2d8-e5d1-4e14-afe2-32eb8e0ed93a' },
       });
       // console.log('First Page:', fetchedPosts.data);
 
@@ -76,7 +76,7 @@ function ChatUserSearch({ userLoggedIn, secret, creds }) {
                 className="btn btn-outline-danger btn-block "
                 onClick={() => makeDirectMessaging(user.username)}
               >
-                {user.username}
+                {`${user.first_name}  ${user.last_name}`}
               </button>
             );
           })}
