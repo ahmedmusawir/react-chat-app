@@ -44,10 +44,9 @@ function DirectMessageSearch() {
       <h1 id="header-message">Start Messaging</h1>
       <input
         id="dm-search-input"
-        placeholder="Username"
-        // onChange={(e) => setUsername(e.target.value)}
+        placeholder="Search the following DMs"
+        className="form-control "
       />
-      {/* <button onClick={() => createDirectChat(creds)}>Create</button> */}
     </div>
   );
 }

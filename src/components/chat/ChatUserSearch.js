@@ -55,7 +55,7 @@ function ChatUserSearch({ userLoggedIn, creds }) {
         type="text"
         name="react-search"
         id="react-search"
-        placeholder="What are you looking for?"
+        placeholder="Find Users to add ..."
         className="form-control m-1"
         onChange={(e) => setQuery(e.target.value)}
       />
