@@ -2,14 +2,17 @@ import React, { useState, useContext } from 'react';
 
 import { MenuOutlined } from '@ant-design/icons';
 
-import { ChatEngineContext } from '../Context';
+import { ChatEngineContext } from 'react-chat-engine';
+// import { ChatEngineContext } from '../Context';
 
+// import { ChatList } from 'react-chat-engine';
 import ChatList from '../ChatList';
 
 const ChatListDrawer = (props) => {
+  // const [isOpen, setIsOpen] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const context = useContext(ChatEngineContext);
-  const allProps = { ...props, ...context }; // I changed ...context.conn to just ...context and it worked
+  const allProps = { ...props, ...context.conn };
 
   return (
     <div>
@@ -17,7 +20,6 @@ const ChatListDrawer = (props) => {
         onClick={() => setIsOpen(true)}
         style={{ color: 'rgb(24, 144, 255)', outline: 'none' }}
       />
-
       {isOpen && (
         <div style={styles.drawerContainer}>
           {context.conn !== null && context.conn.renderChatList ? (
@@ -47,6 +49,7 @@ const styles = {
     height: '100%',
     backgroundColor: 'white',
     textAlign: 'left',
+    // border: '.5rem dotted yellow',
   },
   titleContainer: {
     width: '100%',

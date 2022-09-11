@@ -14,7 +14,6 @@ const { htmlToText } = require('html-to-text');
 
 const ChatCardMoose = (props) => {
   const { chat } = props;
-  console.log(chat);
   const { conn, activeChat, setActiveChat } = useContext(ChatEngineContext);
 
   if (_.isEmpty(chat) || props.loading) return <Loading />;

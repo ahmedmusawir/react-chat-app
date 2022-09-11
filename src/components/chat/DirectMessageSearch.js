@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 function DirectMessageSearch() {
   useEffect(() => {
-    const searchInput = $('#dm-search-input');
+    const searchInput = $('.dm-search-input');
     // console.log('SEARCH INPUT: ', searchInput);
     searchInput.on('keyup', searchHandler);
   }, []);
@@ -41,11 +41,11 @@ function DirectMessageSearch() {
 
   return (
     <div>
-      <h1 id="header-message">Start Messaging</h1>
+      <h4 id="header-message">Start Messaging</h4>
       <input
         id="dm-search-input"
         placeholder="Search the following DMs"
-        className="form-control "
+        className="form-control dm-search-input"
       />
     </div>
   );
