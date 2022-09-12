@@ -29,7 +29,7 @@ const ChatHeaderMooseMobile = ({ loggedInUser, creds }) => {
       : chat.title
     : undefined;
 
-  var text = 'Say hello!';
+  var text = 'Say hello Mobile!';
   if (!chat) {
     text = 'Loading...';
   } else if (
@@ -51,8 +51,8 @@ const ChatHeaderMooseMobile = ({ loggedInUser, creds }) => {
   // console.log('MOOSE CHAT PERSON : ', currentPerson);
 
   useEffect(() => {
-    console.log('MOOSE CHAT PERSON USE EFFECT : ', loggedInUser);
-    console.log('MOOSE CHAT HEADER CONTEXT : ', creds);
+    // console.log('MOOSE CHAT PERSON IN USE EFFECT : ', loggedInUser);
+    // console.log('MOOSE CHAT HEADER CREDS : ', creds);
     getOrCreateChat(creds, { is_direct_chat: true, usernames: [loggedInUser] });
   }, []);
 
@@ -80,7 +80,8 @@ const ChatHeaderMooseMobile = ({ loggedInUser, creds }) => {
           className="ce-chat-title-text"
           id={`ce-chat-feed-title-${title}`}
         >
-          {title ? title : <LoadingOutlined />}
+          {title ? title : 'SelfLIST Chat'}
+          {/* {title ? title : <LoadingOutlined />} */}
         </div>
 
         <div style={styles.subtitleText} className="ce-chat-subtitle-text">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import {
   ChatEngine,
@@ -19,12 +19,11 @@ import NewChatFormMoose from '../components/chat/ChatList/NewChatFormMoose';
 
 const MooseChat = (props) => {
   //COLLECTING CURRENT USER FROM GLOBAL
-  const currentUser = 'chat_user16@email.com';
+  const currentUser = 'chat_user18@email.com';
   const currentUserEmail = 'pass1234';
 
   const [username, setUsername] = useState('');
   const [screenWidth, setScreenWidth] = useState('');
-  const [loading, setLoading] = useState(true);
 
   const loggedInWPUser = {
     username: currentUser,
@@ -35,7 +34,7 @@ const MooseChat = (props) => {
 
   useEffect(() => {
     let winWidth = $(window).width();
-    console.log('Win Width: ', winWidth);
+    // console.log('Win Width: ', winWidth);
     setScreenWidth(winWidth);
 
     if (currentUser && currentUserEmail) {
@@ -49,7 +48,6 @@ const MooseChat = (props) => {
         })
         .then(() => {
           console.log('User found and Chat started...');
-          setLoading(false);
         })
         .catch(() => {
           axios
@@ -59,7 +57,6 @@ const MooseChat = (props) => {
               },
             })
             .then(() => {
-              setLoading(false);
               window.location.reload();
             })
             .catch((error) =>
@@ -104,9 +101,6 @@ const MooseChat = (props) => {
           <ChatCardMoose key={`${index}`} chat={chat} /> // Localized and works!
         )}
         renderChatHeader={(chat) => <ChatHeaderMoose />}
-        // renderChatHeader={(chat) => (
-        //   <ChatHeaderMooseMobile loggedInUser={currentUser} />
-        // )}
         renderNewChatForm={(creds) => <NewChatFormMoose creds={creds} />} // Custom
         renderChatSettings={(chatAppState) => (
           <ChatUserSearch userLoggedIn={currentUser} creds={chatAppState} />
@@ -137,7 +131,8 @@ const MooseChat = (props) => {
         renderChatSettings={(chatAppState) => (
           <ChatUserSearch
             userLoggedIn={currentUser}
-            creds={chatAppState.conn}
+            creds={chatAppState.creds}
+            // creds={chatAppState.conn}
           />
         )}
       />

@@ -34,11 +34,11 @@ function ChatUserSearch({ userLoggedIn, creds }) {
     fetchPosts();
   }, [userLoggedIn, creds]);
 
-  // console.log('logged in AppState: ', appState);
+  // console.log('logged in CREDS: ', creds);
 
   const makeDirectMessaging = (usr) => {
-    console.log('User clicked', usr);
-    console.log('User CREDS', creds);
+    // console.log('User clicked', usr);
+    // console.log('User CREDS', creds);
     getOrCreateChat(creds, { is_direct_chat: true, usernames: [usr] });
   };
 

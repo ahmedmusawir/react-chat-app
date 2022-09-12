@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
 import { ChatEngineContext } from 'react-chat-engine';
 import DirectMessageSearch from '../../DirectMessageSearch';
