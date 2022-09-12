@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
-import { ChatEngineContext } from 'react-chat-engine';
+import { ChatEngineContext, getOrCreateChat } from 'react-chat-engine';
 
 import ChatListDrawer from './ChatListDrawer';
 import ChatSettingsDrawer from './ChatSettingsDrawer';
@@ -15,7 +15,7 @@ import { setConfiguration } from 'react-grid-system';
 
 setConfiguration({ maxScreenClass: 'xl', gutterWidth: 0 });
 
-const ChatHeaderMoose = () => {
+const ChatHeaderMooseMobile = ({ loggedInUser, creds }) => {
   const { conn, chats, activeChat } = useContext(ChatEngineContext);
 
   const chat = chats ? chats[activeChat] : undefined;
@@ -42,6 +42,21 @@ const ChatHeaderMoose = () => {
     );
     text = `Active ${formatDateTime(dateTime)}`;
   }
+  // ======================================================================
+  // const currentPerson =
+  //   chat &&
+  //   conn &&
+  //   chat.people.find((person) => person.person.username === conn.userName);
+
+  // console.log('MOOSE CHAT PERSON : ', currentPerson);
+
+  useEffect(() => {
+    console.log('MOOSE CHAT PERSON USE EFFECT : ', loggedInUser);
+    console.log('MOOSE CHAT HEADER CONTEXT : ', creds);
+    getOrCreateChat(creds, { is_direct_chat: true, usernames: [loggedInUser] });
+  }, []);
+
+  // =======================================================================
 
   return (
     <Row className="ce-chat-title" style={styles.titleSection}>
@@ -85,7 +100,7 @@ const ChatHeaderMoose = () => {
   );
 };
 
-export default ChatHeaderMoose;
+export default ChatHeaderMooseMobile;
 
 const styles = {
   titleSection: {

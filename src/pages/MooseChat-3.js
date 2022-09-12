@@ -7,6 +7,7 @@ import {
   ChatCard,
   ChatHeader,
   ChatSettings,
+  // ChatList,
   NewChatForm,
 } from 'react-chat-engine';
 import axios from 'axios';
@@ -14,12 +15,12 @@ import ChatUserSearch from '../components/chat/ChatUserSearch';
 import DirectMessageSearch from '../components/chat/DirectMessageSearch';
 import ChatCardMoose from '../components/chat/ChatCardMoose';
 import ChatHeaderMoose from '../components/chat/ChatHeaderMoose';
-import ChatHeaderMooseMobile from '../components/chat/ChatHeaderMooseMobile';
 import NewChatFormMoose from '../components/chat/ChatList/NewChatFormMoose';
+import ChatList from '../components/chat/ChatList';
 
 const MooseChat = (props) => {
   //COLLECTING CURRENT USER FROM GLOBAL
-  const currentUser = 'chat_user16@email.com';
+  const currentUser = 'bibo';
   const currentUserEmail = 'pass1234';
 
   const [username, setUsername] = useState('');
@@ -86,7 +87,11 @@ const MooseChat = (props) => {
     };
     // createUser(user);
 
-    getOrCreateChat(creds, { is_direct_chat: true, usernames: [username] });
+    getOrCreateChat(
+      creds,
+      { is_direct_chat: true, usernames: [username] },
+      () => setUsername('')
+    );
   }
 
   function renderChatForm(creds) {
@@ -104,21 +109,21 @@ const MooseChat = (props) => {
           <ChatCardMoose key={`${index}`} chat={chat} /> // Localized and works!
         )}
         renderChatHeader={(chat) => <ChatHeaderMoose />}
-        // renderChatHeader={(chat) => (
-        //   <ChatHeaderMooseMobile loggedInUser={currentUser} />
-        // )}
         renderNewChatForm={(creds) => <NewChatFormMoose creds={creds} />} // Custom
+        // renderNewChatForm={(creds) => renderChatForm(creds)} // This is for DM from the Chat page
+        // renderNewChatForm={(creds) => <NewChatForm creds={creds} />} // default doesn't work loses the mobile bar
+        // renderNewChatForm={(creds) => createDirectChat(creds)} // This is for starting DM on page load
+        // renderChatSettings={(chatAppState) => <ChatSettings {...chatAppState} />}
         renderChatSettings={(chatAppState) => (
-          <ChatUserSearch userLoggedIn={currentUser} creds={chatAppState} />
+          <ChatUserSearch
+            userLoggedIn={currentUser}
+            secret={currentUserEmail}
+            creds={chatAppState}
+          />
         )}
       />
     );
-  } else {
-    const credentials = {
-      userName: currentUser,
-      userSecret: 'pass1234',
-      projectID: '4ca132ec-0f15-4b96-9cb4-a62d31066802',
-    };
+  } else
     return (
       <ChatEngine
         height="80vh"
@@ -128,21 +133,16 @@ const MooseChat = (props) => {
         renderChatCard={(chat, index) => (
           <ChatCardMoose key={`${index}`} chat={chat} /> // Localized and works!
         )}
-        renderChatHeader={(chat) => (
-          <ChatHeaderMooseMobile
-            loggedInUser={currentUser}
-            creds={credentials}
-          />
-        )}
+        renderChatHeader={(chat) => <ChatHeaderMoose />}
         renderChatSettings={(chatAppState) => (
           <ChatUserSearch
             userLoggedIn={currentUser}
-            creds={chatAppState.conn}
+            secret={currentUserEmail}
+            creds={chatAppState}
           />
         )}
       />
     );
-  }
 };
 
 export default MooseChat;

@@ -19,7 +19,7 @@ import NewChatFormMoose from '../components/chat/ChatList/NewChatFormMoose';
 
 const MooseChat = (props) => {
   //COLLECTING CURRENT USER FROM GLOBAL
-  const currentUser = 'chat_user16@email.com';
+  const currentUser = 'chat_user15@email.com';
   const currentUserEmail = 'pass1234';
 
   const [username, setUsername] = useState('');
@@ -103,10 +103,10 @@ const MooseChat = (props) => {
         renderChatCard={(chat, index) => (
           <ChatCardMoose key={`${index}`} chat={chat} /> // Localized and works!
         )}
-        renderChatHeader={(chat) => <ChatHeaderMoose />}
-        // renderChatHeader={(chat) => (
-        //   <ChatHeaderMooseMobile loggedInUser={currentUser} />
-        // )}
+        // renderChatHeader={(chat) => <ChatHeaderMoose />}
+        renderChatHeader={(chat) => (
+          <ChatHeaderMooseMobile loggedInUser={currentUser} />
+        )}
         renderNewChatForm={(creds) => <NewChatFormMoose creds={creds} />} // Custom
         renderChatSettings={(chatAppState) => (
           <ChatUserSearch userLoggedIn={currentUser} creds={chatAppState} />
@@ -117,7 +117,6 @@ const MooseChat = (props) => {
     const credentials = {
       userName: currentUser,
       userSecret: 'pass1234',
-      projectID: '4ca132ec-0f15-4b96-9cb4-a62d31066802',
     };
     return (
       <ChatEngine

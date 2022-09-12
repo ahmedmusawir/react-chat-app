@@ -112,10 +112,6 @@ const MooseChat = (props) => {
         <ChatHeaderMoose />
       )}
       renderNewChatForm={(creds) => <NewChatFormMoose creds={creds} />} // Custom
-      // renderNewChatForm={(creds) => renderChatForm(creds)} // This is for DM from the Chat page
-      // renderNewChatForm={(creds) => <NewChatForm creds={creds} />} // default doesn't work loses the mobile bar
-      // renderNewChatForm={(creds) => createDirectChat(creds)} // This is for starting DM on page load
-      // renderChatSettings={(chatAppState) => <ChatSettings {...chatAppState} />}
       renderChatSettings={(chatAppState) => (
         <ChatUserSearch
           userLoggedIn={currentUser}

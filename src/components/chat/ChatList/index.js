@@ -107,9 +107,6 @@ const ChatList = (props) => {
           <NewChatFormMoose
             onClose={props.onClose ? () => props.onClose() : undefined}
           />
-          // <NewChatForm
-          //   onClose={props.onClose ? () => props.onClose() : undefined}
-          // />
         )}
 
         {renderChats(chatList)}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getOrCreateChat } from 'react-chat-engine';
+import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
 import axios from 'axios';
 
 function ChatUserSearch({ userLoggedIn, creds }) {
@@ -38,7 +38,6 @@ function ChatUserSearch({ userLoggedIn, creds }) {
 
   const makeDirectMessaging = (usr) => {
     console.log('User clicked', usr);
-    console.log('User CREDS', creds);
     getOrCreateChat(creds, { is_direct_chat: true, usernames: [usr] });
   };
 
@@ -68,7 +67,7 @@ function ChatUserSearch({ userLoggedIn, creds }) {
           .map((user) => {
             if (user.username === userLoggedIn) {
               // SKIPPING THE USER WHO'S LOGGED IN
-              // makeDirectMessaging(user.username);
+              makeDirectMessaging(user.username);
               return null;
             }
             return (
