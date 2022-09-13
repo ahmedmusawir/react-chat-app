@@ -41,10 +41,9 @@ function DirectMessageSearch() {
 
   return (
     <div>
-      <h4 id="header-message">Start Messaging</h4>
       <input
         id="dm-search-input"
-        placeholder="Search the following DMs"
+        placeholder="Search..."
         className="form-control dm-search-input"
       />
     </div>

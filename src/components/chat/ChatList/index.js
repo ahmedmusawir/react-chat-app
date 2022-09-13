@@ -4,7 +4,6 @@ import {
   ChatEngineContext,
   getLatestChats,
   getChatsBefore,
-  NewChatForm,
 } from 'react-chat-engine';
 
 import { getDateTime } from '../Utilities/timezone';

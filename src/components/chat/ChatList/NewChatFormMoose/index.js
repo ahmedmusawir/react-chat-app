@@ -24,25 +24,32 @@ const NewChatFormMoose = (props) => {
         style={{
           ...styles.newChatContainer,
           ...{ marginLeft: props.onClose ? '40px' : '0px' },
-          border: '2px dotted blue',
+          // border: '2px dotted blue',
         }}
       >
         <div
+          className="chat-list-header"
           style={{
-            fontWeight: '600',
+            fontWeight: '700',
             fontSize: '24px',
             position: 'relative',
             top: '4px',
-            width: 'calc(100% - 48px)',
-            border: '2px dotted green',
+            width: '100%',
+            color: 'red',
+            marginTop: '5px',
+            textAlign: 'center',
+            fontFamily: 'Poppins, sans-serif',
+            // marginLeft: '8px',
+            // width: 'calc(100% - 48px)',
+            // border: '2px dotted green',
           }}
         >
-          New Bibo Chats
+          Start Messaging
         </div>
       </div>
-      <hr />
+      <hr className="bg-danger" />
       <DirectMessageSearch />
-      <hr />
+      <hr className="bg-danger" />
     </>
   );
 };
@@ -54,13 +61,17 @@ const styles = {
     position: 'relative',
     top: '26px',
     left: '18px',
-    fontSize: '16px',
-    color: 'red',
+    fontSize: '20px',
+    border: '1px solid black',
+    padding: '5px',
+    borderRadius: '50px',
+    backgroundColor: '#36454F',
+    color: 'white',
   },
   newChatContainer: {
     padding: '16px 14px',
     backgroundColor: 'white',
-    border: '2px dotted pink',
-    height: '70px',
+    height: '60px',
+    // height: '70px',
   },
 };

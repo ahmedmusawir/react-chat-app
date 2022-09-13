@@ -18,7 +18,13 @@ const ChatListDrawer = (props) => {
     <div>
       <MenuOutlined
         onClick={() => setIsOpen(true)}
-        style={{ color: 'rgb(24, 144, 255)', outline: 'none' }}
+        style={{
+          color: 'red',
+          // color: 'rgb(24, 144, 255)',
+          outline: 'none',
+          fontSize: '1.5rem',
+          padding: '1rem',
+        }}
       />
       {isOpen && (
         <div style={styles.drawerContainer}>

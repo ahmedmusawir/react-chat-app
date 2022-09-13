@@ -29,7 +29,7 @@ const ChatHeaderMooseMobile = ({ loggedInUser, creds }) => {
       : chat.title
     : undefined;
 
-  var text = 'Say hello Mobile!';
+  var text = 'Say hello!';
   if (!chat) {
     text = 'Loading...';
   } else if (
@@ -42,21 +42,12 @@ const ChatHeaderMooseMobile = ({ loggedInUser, creds }) => {
     );
     text = `Active ${formatDateTime(dateTime)}`;
   }
-  // ======================================================================
-  // const currentPerson =
-  //   chat &&
-  //   conn &&
-  //   chat.people.find((person) => person.person.username === conn.userName);
-
-  // console.log('MOOSE CHAT PERSON : ', currentPerson);
 
   useEffect(() => {
     // console.log('MOOSE CHAT PERSON IN USE EFFECT : ', loggedInUser);
     // console.log('MOOSE CHAT HEADER CREDS : ', creds);
     getOrCreateChat(creds, { is_direct_chat: true, usernames: [loggedInUser] });
   }, []);
-
-  // =======================================================================
 
   return (
     <Row className="ce-chat-title" style={styles.titleSection}>
@@ -122,7 +113,8 @@ const styles = {
     width: '100%',
     padding: '18px 0px',
     textAlign: 'center',
-    color: 'rgb(24, 144, 255)',
+    color: 'red',
+    // color: 'rgb(24, 144, 255)',
     overflowX: 'hidden',
   },
   titleText: {

@@ -18,7 +18,7 @@ import NewChatFormMoose from '../components/chat/ChatList/NewChatFormMoose';
 
 const MooseChat = (props) => {
   //COLLECTING CURRENT USER FROM GLOBAL
-  const currentUser = 'chat_user19@email.com';
+  const currentUser = 'chat_user18@email.com';
   const currentUserEmail = 'pass1234';
 
   const [username, setUsername] = useState('');
@@ -65,15 +65,29 @@ const MooseChat = (props) => {
     }
   }, []);
 
+  const createUser = async (user) => {
+    // put IS FOR GET OR CREATE ACCORDING TO DOC
+    await axios
+      .put('https://api.chatengine.io/users/', user, {
+        headers: { 'Private-Key': '37d9cc64-75a2-41e0-94d9-61a0c9c29750' },
+      })
+      .then((r) => console.log('get or create user', r))
+      .catch((e) => console.log('get or create error', e));
+  };
+
+  function createDirectChat(creds) {
+    const user = {
+      username: username,
+      secret: 'pass1234',
+    };
+    // createUser(user);
+
+    getOrCreateChat(creds, { is_direct_chat: true, usernames: [username] });
+  }
+
   function renderChatForm(creds) {
     return <NewChatFormMoose creds={creds} />;
   }
-
-  const credentials = {
-    userName: currentUser,
-    userSecret: 'pass1234',
-    projectID: '4ca132ec-0f15-4b96-9cb4-a62d31066802',
-  };
 
   if (screenWidth > 575) {
     return (
@@ -85,20 +99,19 @@ const MooseChat = (props) => {
         renderChatCard={(chat, index) => (
           <ChatCardMoose key={`${index}`} chat={chat} /> // Localized and works!
         )}
-        // renderChatHeader={(chat) => <ChatHeaderMoose />}
-        renderChatHeader={(chat) => (
-          <ChatHeaderMooseMobile
-            loggedInUser={currentUser}
-            creds={credentials}
-          />
-        )}
-        renderNewChatForm={(creds) => renderChatForm(creds)} // This is for DM from the Chat page
+        renderChatHeader={(chat) => <ChatHeaderMoose />}
+        renderNewChatForm={(creds) => <NewChatFormMoose creds={creds} />} // Custom
         renderChatSettings={(chatAppState) => (
           <ChatUserSearch userLoggedIn={currentUser} creds={chatAppState} />
         )}
       />
     );
   } else {
+    const credentials = {
+      userName: currentUser,
+      userSecret: 'pass1234',
+      projectID: '4ca132ec-0f15-4b96-9cb4-a62d31066802',
+    };
     return (
       <ChatEngine
         height="80vh"
@@ -118,6 +131,7 @@ const MooseChat = (props) => {
           <ChatUserSearch
             userLoggedIn={currentUser}
             creds={chatAppState.creds}
+            // creds={chatAppState.conn}
           />
         )}
       />

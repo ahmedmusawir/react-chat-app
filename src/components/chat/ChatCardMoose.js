@@ -26,7 +26,8 @@ const ChatCardMoose = (props) => {
   const title =
     chat.is_direct_chat && otherPerson
       ? otherPerson.person.first_name + ' ' + otherPerson.person.last_name
-      : chat.title;
+      : 'My Notes';
+  // : chat.title;
 
   let lastMessage = htmlToText(chat.last_message.text, {});
   if (!lastMessage) {
@@ -35,7 +36,8 @@ const ChatCardMoose = (props) => {
         ? `${chat.last_message.attachments.length} image${
             chat.last_message.attachments.length > 1 ? 's' : ''
           }`
-        : 'Say hello!';
+        : 'Write a Message';
+    // : 'Say hello!';
   }
 
   function didReadLastMessage(chat) {
@@ -129,7 +131,8 @@ const styles = {
     cursor: 'pointer',
     border: '1px dotted #e3e3e3',
     margin: '.3rem',
-    boxShadow: '1px 1px 2px lightgray',
+    boxShadow: '1px 1px 2px gray',
+    backgroundColor: '#e3e3e3',
   },
   titleText: {
     fontWeight: '500',

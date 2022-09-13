@@ -65,7 +65,7 @@ const ChatHeaderMoose = () => {
           className="ce-chat-title-text"
           id={`ce-chat-feed-title-${title}`}
         >
-          {title ? title : 'SelfLIST Chat'}
+          {title ? title : 'SelfLIST Chat Desktop'}
 
           {/* {title ? title : <LoadingOutlined />} */}
         </div>

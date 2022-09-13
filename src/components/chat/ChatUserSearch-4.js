@@ -8,7 +8,6 @@ function ChatUserSearch({ userLoggedIn, creds }) {
   const [isPending, setIsPending] = useState(true);
   const [query, setQuery] = useState('');
   const isDesktop = useMediaQuery({ query: '(min-width: 575px)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 575px)' });
 
   const fetchPosts = async () => {
     try {
@@ -65,8 +64,7 @@ function ChatUserSearch({ userLoggedIn, creds }) {
       />
       <hr className="bg-danger" />
 
-      {isDesktop &&
-        users &&
+      {users &&
         users
           .filter(
             (user) =>
@@ -79,7 +77,6 @@ function ChatUserSearch({ userLoggedIn, creds }) {
               // makeDirectMessaging(user.username);
               return null;
             }
-
             return (
               <button
                 key={user.id}
@@ -88,33 +85,7 @@ function ChatUserSearch({ userLoggedIn, creds }) {
                 onClick={() => makeDirectMessaging(user.username)}
               >
                 {`${user.first_name}  ${user.last_name}`}
-              </button>
-            );
-          })}
-
-      {isMobile &&
-        users &&
-        users
-          .filter(
-            (user) =>
-              user.first_name.toLowerCase().includes(query.toLowerCase()) ||
-              user.last_name.toLowerCase().includes(query.toLowerCase())
-          )
-          .map((user) => {
-            if (user.username === userLoggedIn) {
-              // SKIPPING THE USER WHO'S LOGGED IN
-              // makeDirectMessaging(user.username);
-              return null;
-            }
-
-            return (
-              <button
-                key={user.id}
-                // className="btn btn-block dm-btn-user"
-                className="btn btn-outline-danger btn-block "
-                onClick={() => makeDirectMessaging(user.username)}
-              >
-                {`${user.first_name}  ${user.last_name}`}
+                {/* {user.username} */}
               </button>
             );
           })}
